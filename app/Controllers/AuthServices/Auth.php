@@ -44,6 +44,7 @@ class Auth extends ResourceController
 
             $userData = [
                 'email' => $this->request->getPost('email'),
+                'name' => $this->request->getPost('nama'),
                 'username' => $this->request->getPost('username'),
                 'password' => password_hash($password, PASSWORD_BCRYPT),
                 'role' => $this->request->getPost('role')

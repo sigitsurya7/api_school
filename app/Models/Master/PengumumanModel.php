@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Models\Auth;
+namespace App\Models\Master;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class PengumumanModel extends Model
 {
-    protected $table            = 'auth_users';
+    protected $table            = 'm_pengumuman';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name', 'email', 'username', 'password', 'is_active', 'role'
+        'judul_pengumuman', 'isi_pengumuman', 'to_pengumuman', 'created_by', 'updated_by', 'is_active', 'is_delete'
     ];
 
     protected bool $allowEmptyInserts = false;

@@ -30,4 +30,11 @@ $routes->group('v1', function($routes){
         $routes->post('update/(:num)', 'MasterServices\Level::edit/$1');
         $routes->delete('(:num)', 'MasterServices\Level::delete/$1');
     });
+
+    $routes->group('pengumuman', ['filter' => 'auth'], function($routes){
+        $routes->post('', 'MasterServices\Pengumuman::post');
+        $routes->get('(:any)', 'MasterServices\Pengumuman::get/$1');
+        $routes->post('update/(:num)', 'MasterServices\Pengumuman::edit/$1');
+        $routes->delete('(:num)', 'MasterServices\Pengumuman::delete/$1');
+    });
 });

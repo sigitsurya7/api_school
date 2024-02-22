@@ -15,11 +15,15 @@ class CreatePengumumanTable extends Migration
                 "unsigned" => true,
                 "auto_increment" => true
             ],
-            "code_pengumuman" => [
+            "judul_pengumuman" => [
                 "type" => "VARCHAR",
                 "constraint" => 12
             ],
-            "name_pengumuman" => [
+            "isi_pengumuman" => [
+                "type" => "VARCHAR",
+                "constraint" => 12
+            ],
+            "to_pengumuman" => [
                 "type" => "VARCHAR",
                 "constraint" => 12
             ],
