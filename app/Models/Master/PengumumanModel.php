@@ -41,4 +41,19 @@ class PengumumanModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getPagination(?int $perPage = null): array
+    {
+        $this->builder()
+            ->select('m_pengumuman.*, auth_users.name as pembuat')
+            ->join('auth_users', 'm_pengumuman.created_by = auth_users.id')
+            ->where('m_pengumuman.is_delete', '0')
+            ->orderBy('m_pengumuman.id', 'DESC');
+
+        return [
+            'data'  => $this->paginate($perPage),
+            'pager' => $this->pager,
+            'total' => $this->pager->getPageCount()
+        ];
+    }
 }

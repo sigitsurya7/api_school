@@ -33,7 +33,7 @@ $routes->group('v1', function($routes){
 
     $routes->group('pengumuman', ['filter' => 'auth'], function($routes){
         $routes->post('', 'MasterServices\Pengumuman::post');
-        $routes->get('(:any)', 'MasterServices\Pengumuman::get/$1');
+        $routes->get('', 'MasterServices\Pengumuman::get');
         $routes->post('update/(:num)', 'MasterServices\Pengumuman::edit/$1');
         $routes->delete('(:num)', 'MasterServices\Pengumuman::delete/$1');
     });

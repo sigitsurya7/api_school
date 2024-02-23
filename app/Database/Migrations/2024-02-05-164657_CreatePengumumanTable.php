@@ -17,15 +17,15 @@ class CreatePengumumanTable extends Migration
             ],
             "judul_pengumuman" => [
                 "type" => "VARCHAR",
-                "constraint" => 12
+                "constraint" => 255
             ],
             "isi_pengumuman" => [
-                "type" => "VARCHAR",
-                "constraint" => 12
+                "type" => "text",
+                "constraint" => 255
             ],
             "to_pengumuman" => [
                 "type" => "VARCHAR",
-                "constraint" => 12
+                "constraint" => 255
             ],
             "is_active" => [
                 "type" => "TINYINT",

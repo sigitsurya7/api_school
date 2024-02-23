@@ -40,12 +40,13 @@ class Pengumuman extends ResourceController
         ];
 
         if ($this->validate($rules)) {
+            $id = $this->userId();
 
             $data = [
-                'judul_pengumuman' => $this->request->getPost('judul'),
-                'isi_pengumuman' => $this->request->getPost('isi'),
-                'to_pengumuman' => $this->request->getPost('to'),
-                'created_by' => userId(),
+                'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
+                'isi_pengumuman' => $this->request->getPost('isi_pengumuman'),
+                'to_pengumuman' => $this->request->getPost('to_pengumuman'),
+                'created_by' => $id,
             ];
 
             $this->pengumumanModel->save($data);
@@ -61,35 +62,12 @@ class Pengumuman extends ResourceController
         }
     }
 
-    public function get($page = null)
+    public function get()
     {
-        if($page == 'option'){
+        $perPage = $this->request->getVar('per_page') ?? 10;
 
-            $data = $this->pengumumanModel->findAll();
+        $data = $this->pengumumanModel->getPagination($perPage);
 
-            return $this->respond(['status' => true, 'data' => $data]);
-
-        }else{
-            $perPage = $this->request->getVar('per_page') ?? 10;
-    
-            $data = $this->pengumumanModel->paginate($perPage);
-            $pager = $this->pengumumanModel->pager;
-            $total = $this->pengumumanModel->countAllResults();
-    
-            $pagination = [
-                'total' => $total,
-                'perPage' => $perPage,
-                'currentPage' => $page,
-                'lastPage' => $pager->getPageCount(),
-                'links' => $pager
-            ];
-    
-            $data = [
-                $data,
-                'pager' => $pagination
-            ];
-    
-            return $this->respond(["status" => 200, "data" => $data], 200);
-        }
+        return $this->respond(["status" => 200, "data" => $data], 200);
     }
 }
